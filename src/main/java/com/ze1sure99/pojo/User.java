@@ -5,10 +5,7 @@ public class User {
     private String  username;
     private Integer tel;
 
-    public User(Integer id, String username, Integer tel) {
-        this.id = id;
-        this.username = username;
-        this.tel = tel;
+    public User() {
     }
 
     public Integer getId() {
