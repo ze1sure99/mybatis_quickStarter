@@ -78,7 +78,7 @@ public class Mybatis_Test {
         User user = new User();
         user.setId(3);
         //执⾏sql语句
-        sqlSession.update("user.updateUser",user);
+        sqlSession.update("user.deleteUser",user);
         //增删改的时候提交一下事务
         sqlSession.commit();
         //释放资源
