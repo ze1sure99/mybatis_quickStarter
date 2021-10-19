@@ -61,7 +61,24 @@ public class Mybatis_Test {
         user.setUsername("ze1sure");
         user.setTel("156");
         //执⾏sql语句
-        sqlSession.update("user.updateUser",user); 
+        sqlSession.update("user.updateUser",user);
+        //增删改的时候提交一下事务
+        sqlSession.commit();
+        //释放资源
+        sqlSession.close();
+    }
+    @Test
+    public void test4() throws IOException{
+        ////加载核⼼配置⽂件
+        InputStream resourceAsStream = Resources.getResourceAsStream("sqlMapConfig.xml");
+        //这一步中我们用到了构建者设计模式 获取到对象
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(resourceAsStream);
+        //获得sqlSession⼯⼚对象
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        User user = new User();
+        user.setId(3);
+        //执⾏sql语句
+        sqlSession.update("user.updateUser",user);
         //增删改的时候提交一下事务
         sqlSession.commit();
         //释放资源

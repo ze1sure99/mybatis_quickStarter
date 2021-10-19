@@ -18,4 +18,8 @@
     <update id="updateUser" parameterType="com.ze1sure99.pojo.User">
         update user set username = #{username},tel= #{tel} where id=#{id}
     </update>
+    <!--删除-->
+    <delete id="deleteUser" parameterType="com.ze1sure99.pojo.User">
+        delete from user where id = #{id}
+    </delete>
 </mapper>
