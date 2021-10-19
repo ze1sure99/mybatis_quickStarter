@@ -1,18 +1,18 @@
 package com.ze1sure99.pojo;
 
 public class User {
-    private Integer id;
+    private int id;
     private String  username;
-    private Integer tel;
+    private String tel;
 
     public User() {
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -24,11 +24,11 @@ public class User {
         this.username = username;
     }
 
-    public Integer getTel() {
+    public String getTel() {
         return tel;
     }
 
-    public void setTel(Integer tel) {
+    public void setTel(String tel) {
         this.tel = tel;
     }
 

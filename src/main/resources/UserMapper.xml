@@ -4,7 +4,18 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="user">
     <!-- namespace:名称空间：与id组成sql的唯一标识 resultType表示返回值类型-->
+    <!--查询用户-->
     <select id="findAll" resultType="com.ze1sure99.pojo.User">
        select  * from user
     </select>
+    <!--添加用户-->
+    <!--parameterType:参数类型-->
+    <insert id="saveUser" parameterType="com.ze1sure99.pojo.User">
+        insert into user values (#{username},#{id},#{tel})
+    </insert>
+
+    <!--修改-->
+    <update id="updateUser" parameterType="com.ze1sure99.pojo.User">
+        update user set username = #{username},tel= #{tel} where id=#{id}
+    </update>
 </mapper>
