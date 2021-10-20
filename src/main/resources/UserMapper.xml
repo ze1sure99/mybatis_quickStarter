@@ -2,24 +2,48 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="user">
+<!--动态代理的时候需要把namespace改成IUerDao-->
+<mapper namespace="com.ze1sure99.dao.IUserDao">
     <!-- namespace:名称空间：与id组成sql的唯一标识 resultType表示返回值类型-->
     <!--查询用户-->
-    <select id="findAll" resultType="com.ze1sure99.pojo.User">
+    <select id="findAll" resultType="uSeR">
        select  * from user
     </select>
     <!--添加用户-->
     <!--parameterType:参数类型-->
-    <insert id="saveUser" parameterType="com.ze1sure99.pojo.User">
+    <insert id="saveUser" parameterType="user">
         insert into user values (#{username},#{id},#{tel})
     </insert>
 
     <!--修改-->
-    <update id="updateUser" parameterType="com.ze1sure99.pojo.User">
+    <update id="updateUser" parameterType="user">
         update user set username = #{username},tel= #{tel} where id=#{id}
     </update>
     <!--删除-->
     <delete id="deleteUser" parameterType="com.ze1sure99.pojo.User">
         delete from user where id = #{id}
     </delete>
+    <!--多条件组合查询：演示if-->
+    <select id="findByCondition" parameterType="User" resultType="User">
+        select * from  user
+           <where>
+           <if test="id != 0">
+               and id = #{id}
+           </if>
+           <if test="username != null">
+               and username = #{username}
+           </if>
+           </where>
+
+    </select>
+    <!--多值查询，演示foreach-->
+    <select id="findByIds" parameterType="list" resultType="User">
+        select  * from user
+        <where>
+            <!--当前传递的是数组，array-->
+            <foreach collection="array" open="id in (" close=")" item="id" separator=",">
+               #{id}
+            </foreach>
+        </where>
+    </select>
 </mapper>
